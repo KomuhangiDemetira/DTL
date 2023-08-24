@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4>collecting user input in DTL</h4>
+<di class="card">
+    <di class="card body">
+        <form class="form-control"method='POST'action="/data_collect/" enctype ="multipart/form-data">
+            {% csrf_token %}
+            <br>
+            <input type ='text'name='username'placeholder='please enter your Name'requied>
+           <br>
+            <input type ='number'name='age'placeholder='please enter your Age'requied>
+            <br>
+            <input type ='text'name='phone'placeholder='please enter your Phone'requied>
+            <br>
+            <input type ='submit' class="btn btn-lg btn -outline-success" value="COLLECT">         
+</div>
+</div>
+{% endblock %}  
+
+

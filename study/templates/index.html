@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h4>Inheriting from the base template</h4>
+    <h4>Proud to be from {{ continent|default:'Africa' }}.</h4>
+    {% if continent %}
+        <h4>You entered {{ continent|default:'Africa' }}.</h4>
+        <h4>You entered {{ continent| upper }}.</h4>
+        <br>
+        <br>
+    {% elif Asian %}
+    <h4>I am {{Asian}}.</h4>
+    {% else %}
+    <h4>I am a Homosapien </h4>
+    <br>
+    <form action="" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        <input type="text" name="continent" required>
+        {% if user.is_autheticated %}
+        <button type="submit" class="btn btn_outline_success">ENTER</button>
+        {% endif %}
+    </form>
+    {% endif %}
+{% endblock %}  
+
+

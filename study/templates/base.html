@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}  <title>{{ p_title |default:'DTL' }}</title>{% endblock %}
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %} 
+</head>
+<body style="background-color: beige;text-align: center;">
+    <div>
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid" style="background-color: black;" >
+              <a class="navbar-brand" href="#">Navbar</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  {% if user.is_autheticated %}
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                  </li>
+                  <li class="nav-item">
+                    <!-- <a class="nav-link disabled">Disabled</a> -->
+                  </li>
+                  {% endif %}
+                  <li class="nav-item">
+                    <a class="nav-link">Register</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link">login</a>
+                      </li>
+                </ul>
+               
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="card">
+      {% if user.is_autheticated %}
+        <div class="card-body">
+            <h3>{{ p_title|default:'an_autheticated DtL user' }}</h3>
+            <h4 > Compiled by {{author |default:'Demitira'}}</h4>
+        </div>
+        {% endif %}
+        <div class="card-body">
+          <h3>{{ p_title|default:'an_autheticated  DTL user' }}</h3>
+          <h4 >{{author |default:'please login to find out the author'}}</h4>
+    </div>
+    {% if user.is_autheticated%}
+    {% endif %}
+   
+   <br>
+   <div class="card">
+        <div class="card body">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>   
+    <div class="row" style="margin-top: 18px;">
+        <div class="col" style="text-align: center; color: aqua; background-color: black;padding-top: 80px;">
+          <footer>
+          </i> <i class="fa fa-copyright">Django Templating
+            <p>De*******mmm</p>
+            <br><br>
+          </footer>
+        </div>
+    </div>  
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+DJANGO TEMPLATING LANGUAGE.
+
+Terms used in DTL
+
+Template is a text file
+Django templating language is  a system designed to  express presentation not programme logic.
+It is responsible for logical flow of the code.
+The django templating system provides tags which funtions like other programming constructs eg a boolean for test and for loop for looping.
+In templating language we use tags
+Tags,they a used for presentation flow 
+the tags are not executed  as corresponding codes however 
+they are  evaluated whenever the template is evaluated.
+
+
+NB:
+VARRIABLES.
+*It is written with 2 curl blaces eg
+{{demi}},{{car}}
+
+*It is not stored in the template however a templating engine 
+evaluates  it with their results.
+This arriable is picked from the views by the templating engine.
+
+Varriable names should;
+- not include spaces
+- not start with an underscore,or a number or a dot-(.)
+-when accessing the name, the exact view is what should be called.
+-whatever you put within the {{}} is read as a varriable name
+-we cannot calculate within the template however we can calculate 
+from the views and send the results to template.
+-we serve the index that is inheriting from the base.
+
+TAGS{% tag %}
+- Tags  are written with modulus eg {% esther/demi %},{% django %}
+Tags are more complex than varriables, some create text in the  output, 
+some  control presentation flow by forming loops or logic,eg, {% for %} ,{% if %}
+and some load external information from the views or other templates to be used 
+by later varriables.eg {% extends %}.
+-some tags require a beggining and ending tag , i.e {% tag %}...content ... {% endtag %} eg, 
+{% block content %} ...content...{% endblock %}
+whereas some don't, eg, {% extends 'parent_template.html' %}
+-There should always  be space btn % signs and the tag name.
+-The tag name is never written in capital letters or with a number or an(_) or  a symbol .
+
+-EXAMPLES OF TAGS USED IN DJANGO TEMPLATING LANGUAGE
+1. Extends {% extends 'parent_template.html' %}
+-- This tag is used to inherit template/base layouts
+-- It does not require an opening and  closing tags
+
+2. Load {% load static %}
+-- This is used to load external information or files from the django static folder,
+ eg , css, images, audios, videos ,js e.t.c.
+-- This also does not require  a closing tag.
+
+3. For tag, i.e, {% for item in items %} ..action.. {% endfor %}
+-- This function requires an opening and closing tag.
+-- This is used to loop over every item in a list of items.
+
+**-- u can add a varriable  but u  can add a default
+
+
+4.If, elif  and else 
+This evaluates a varriable or condition, if the condition is satisified,
+Or the varriable is true,then the block of code is displayed.
+-- The if tag can be used  in conjunction with is_aunthenticated()method
+to control what the user sees before and after logging in(authentication)
+
+
+ *-Filters.
+    Filters are used to modify  varriables for display.
+    They are written with curly blaces of the varriables and the pipe eg, {demi | Upper}
+
+    examples of Filters
+
+    -lower   -small letters
+    eg, {{ name|lower }}
+    -Upper   -capital letters
+    eg {{ name|upper }}
+    -default - if the varriable is  false the default value is used
+    eg {{ student|default:'demi'}}
+    -Capfirst
+    eg {{ city|Capfirst }}
+    -length - It is used to return the length of the varriable , and it works on  the lists and strings
+    eg {{authour|length }}
+    -Filesizeformat - only capitalises the first letter  It formats the value of  the varriable filesize into human readable filesize.
+    eg {{kampala|filesizeformat }}
+    *linebreak -- converts linebreaks into paragraph <p> tags in html
+    eg {{city|linebreak }}
+    *escape   - escape text contents. it turns linebreak tag into a p tags.
+    eg {{kampala|escape }} 
+    *truncatewords ; display the first number of  words you said to a particular varriable
+    -{{words|truncatewords: put number of words to truncate}}
+    *join ; it filters the arguments that contain spaces must be quoted
+    *- to join  a list of spaces  you would use the join filters
+    eg -{{students|join:,'}}
+    -** Filters can be  changed or nested. the output can be passed on to the next eg,
+    {{ text|linebreaks|escape|upper|default:'' }}
+
+    *- Comments; 
+    -- used to comment  of a lines of code in dtl.
+    -- it is used one  curl blaces and a tag,
+    eg nested signs, ie (# comment #)
+
+
+
+
